@@ -1,0 +1,8 @@
+dataset:
+  name: ca
+  root_dir: datasets/ca
+
+policy:
+  run_end2end_ablation: false
+  reason: high_cost_placeholder
+  note: keep final-stage ablation disabled unless extra compute budget is available

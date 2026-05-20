@@ -1,0 +1,70 @@
+metrics_collection:
+  stages:
+    - cot
+    - final_llm
+  export_formats:
+    - json
+    - csv
+  output_dir: ablation_study/outputs/tables
+
+tables:
+  cot_macro_table:
+    datasets:
+      - nyc
+      - tky
+      - ca
+    variants:
+      - full
+      - w_o_td
+      - w_o_preference
+      - history_only
+    metrics:
+      - hit@1
+      - hit@3
+      - hit@5
+      - mrr
+  cot_fine_table:
+    datasets:
+      - nyc
+      - tky
+      - ca
+    variants:
+      - full
+      - w_o_td
+      - w_o_preference
+      - w_o_macro
+      - history_only
+    metrics:
+      - hit@1
+      - hit@5
+      - hit@10
+      - mrr
+  final_llm_table:
+    datasets:
+      - nyc
+    variants:
+      - full
+      - w_o_fine
+      - w_o_macro
+      - w_o_preference
+      - w_o_td
+    metrics:
+      - acc@1
+
+case_study:
+  datasets:
+    - nyc
+  num_success_cases: 2
+  num_failure_cases: 1
+  output_dir: ablation_study/outputs/cases
+
+cost_summary:
+  datasets:
+    - nyc
+    - tky
+    - ca
+  stages:
+    - preference_generation
+    - fine_training
+    - final_llm_training
+  output_dir: ablation_study/outputs/tables
