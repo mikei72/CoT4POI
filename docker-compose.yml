@@ -1,0 +1,120 @@
+name: next-poi-smoke
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    command:
+      - python
+      - -m
+      - uvicorn
+      - next_poi.serving.app:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+    environment:
+      NEXT_POI_BUNDLE: /opt/next-poi/bundle
+      NEXT_POI_MONITORING_PATH: /var/lib/next-poi/monitoring/events.jsonl
+    volumes:
+      - type: bind
+        source: ${NEXT_POI_BUNDLE_HOST_PATH:-./artifacts/smoke/b3/bundle}
+        target: /opt/next-poi/bundle
+        read_only: true
+      - type: volume
+        source: monitoring
+        target: /var/lib/next-poi/monitoring
+    ports:
+      - "${NEXT_POI_API_PORT:-8000}:8000"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=2).read()
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    init: true
+    restart: unless-stopped
+
+  demo:
+    build:
+      context: .
+      dockerfile: Dockerfile.demo
+    command:
+      - python
+      - -m
+      - streamlit
+      - run
+      - src/next_poi/demo/app.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+      - --server.headless=true
+    environment:
+      NEXT_POI_API_BASE_URL: http://api:8000
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "${NEXT_POI_DEMO_PORT:-8501}:8501"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=2).read()
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 15s
+    init: true
+    restart: unless-stopped
+
+  mlflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    command:
+      - mlflow
+      - server
+      - --backend-store-uri
+      - file:///mlruns
+      - --default-artifact-root
+      - file:///mlruns/artifacts
+      - --host
+      - 0.0.0.0
+      - --port
+      - "5000"
+    environment:
+      MLFLOW_ALLOW_FILE_STORE: "true"
+    volumes:
+      - type: volume
+        source: mlruns
+        target: /mlruns
+    ports:
+      - "${NEXT_POI_MLFLOW_PORT:-5000}:5000"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen('http://127.0.0.1:5000/health', timeout=2).read()
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 15s
+    init: true
+    restart: unless-stopped
+
+volumes:
+  monitoring:
+  mlruns:

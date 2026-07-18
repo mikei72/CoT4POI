@@ -1,0 +1,63 @@
+{
+  "artifact_scope": "privacy-safe aggregate summary; raw NYC remains local and ignored",
+  "core_sha256": "a3775a00e73743d8aa56b68b092bb4c864e18ee408090ec4d5b3a39930d78471",
+  "data_manifest_sha256": "821c4ec44a09c71a27c3b6f8b47af9e30cd612338085cc4ffd335b58d619a95a",
+  "dataset": "nyc",
+  "hardware": {
+    "architecture": "arm64",
+    "chip": "Apple M4",
+    "memory_gb": 16,
+    "python": "3.10.11"
+  },
+  "metrics": {
+    "candidate_recall_at_100": 0.36513531953604733,
+    "candidate_recall_at_50": 0.3091880827837162,
+    "coverage": 0.19176706827309237,
+    "duplicate_rate": 0.0,
+    "empty_rate": 0.0,
+    "hit_at_1": 0.07061632931544234,
+    "hit_at_10": 0.1987150329770298,
+    "hit_at_5": 0.156072322037753,
+    "invalid_rate": 0.0,
+    "macro_hit_at_1": 0.18000909711166704,
+    "macro_hit_at_3": 0.3707641573800318,
+    "macro_mrr": 0.26213895838071566,
+    "mrr": 0.10784411539613928,
+    "ndcg_at_10": 0.1293735305867113,
+    "ndcg_at_5": 0.11549701524867147,
+    "validity_rate": 1.0
+  },
+  "result_lineage": "production_current",
+  "result_source": "rerun",
+  "runtime": {
+    "evaluation_duration_ms": 7771.313292032573,
+    "prediction_latency_ms": {
+      "count": 17588,
+      "max": 0.9886249899864197,
+      "mean": 0.3736181517579549,
+      "p50": 0.3709160373546183,
+      "p95": 0.4184579593129456
+    }
+  },
+  "sample_count": 17588,
+  "schema_version": "1",
+  "split_audit": {
+    "event_counts": {
+      "test": 10374,
+      "train": 83228,
+      "validation": 10339
+    },
+    "event_overlap_counts": {
+      "train_test": 0,
+      "train_validation": 0,
+      "validation_test": 0
+    },
+    "session_overlap_counts": {
+      "train_test": 0,
+      "train_validation": 7,
+      "validation_test": 10
+    },
+    "temporal_splits_ordered": true
+  },
+  "variant": "b3"
+}

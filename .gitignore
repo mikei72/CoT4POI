@@ -1,6 +1,6 @@
 .idea/
 datasets/
-model/
+/model/
 tensorboard/
 log/
 dataIntegration/
@@ -14,7 +14,23 @@ experiment/
 README.graduation.zh.md
 __pycache__/
 **/__pycache__/
-ablation_study/outputs
-ablation_study-wsl
 *.ps1
 *.sh
+*.baiduyun.uploading.cfg
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+artifacts/
+mlruns/
+monitoring_events/
+
+# Local AI/Trellis tooling and workflow state
+.agents/
+.codex/
+.trellis/
+
+# Local archive of the original thesis/research pipeline
+/legacy_research/

@@ -1,0 +1,21 @@
+{
+  "artifact_scope": "privacy-safe unlabeled aggregates",
+  "current_event_count": 12,
+  "injected": {
+    "alert_dimensions": [
+      "category",
+      "history_length"
+    ],
+    "overall_alert": true
+  },
+  "normal": {
+    "alert_dimensions": [],
+    "overall_alert": false
+  },
+  "reference_event_count": 12,
+  "schema_version": "monitoring-drift-v1",
+  "thresholds": {
+    "js_divergence": 0.1,
+    "psi": 0.2
+  }
+}

@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "next-poi-production"
+version = "0.1.0"
+description = "Deterministic CPU smoke pipeline for the CoT4POI production ML refactor"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+  "numpy>=1.26,<3",
+  "pandas>=2.1,<3",
+  "pydantic>=2.7,<3",
+  "PyYAML>=6,<7",
+]
+
+[project.scripts]
+next-poi-evaluate = "next_poi.evaluation.__main__:main"
+next-poi-monitoring-replay = "next_poi.monitoring.replay:main"
+next-poi-serving-smoke = "next_poi.serving.smoke_test:main"
+
+[project.optional-dependencies]
+service = [
+  "fastapi>=0.115,<1",
+  "httpx>=0.27,<1",
+  "uvicorn[standard]>=0.30,<1",
+]
+tracking = ["mlflow>=2.17,<4"]
+demo = [
+  "httpx>=0.27,<1",
+  "streamlit>=1.39,<2",
+]
+dev = [
+  "pytest>=8.3,<9",
+  "pytest-cov>=6,<8",
+  "ruff>=0.9,<1",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

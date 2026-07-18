@@ -1,0 +1,19 @@
+{
+  "backend": "full-gpu",
+  "config_sha256": "ce5bd8053c13a179f249365b68e57588149a846b6d518b9a29024ca4c4ed21a1",
+  "dynamic_load_verified": false,
+  "file_entries": 33,
+  "missing_file_entries": 5,
+  "missing_requirements": [
+    "datasets/ca/experiment/checkpoints/best_model/model.safetensors",
+    "datasets/ca/experiment/checkpoints/best_model/pytorch_model.bin",
+    "experiment/checkpoint-n/global_step*/",
+    "experiment/checkpoint-n/trainable_params.bin",
+    "model/Llama-2-7b-longlora-32k-ft/pytorch_model-00001-of-00002.bin",
+    "model/Llama-2-7b-longlora-32k-ft/pytorch_model-00002-of-00002.bin"
+  ],
+  "model_name": "legacy-cot4poi-full-gpu",
+  "present_file_entries": 28,
+  "runtime_status": "static_only",
+  "schema_version": "1"
+}

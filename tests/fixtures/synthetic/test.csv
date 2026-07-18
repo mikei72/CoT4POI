@@ -1,0 +1,7 @@
+raw_user_id,session_id,timestamp,raw_poi_id,category
+synthetic-user-fable,synthetic-session-test-fable,2026-01-15T08:00:00Z,synthetic-poi-hub,Synthetic Transit Hub
+synthetic-user-fable,synthetic-session-test-fable,2026-01-15T09:00:00Z,synthetic-poi-park,Synthetic Park
+synthetic-user-fable,synthetic-session-test-fable,2026-01-15T10:00:00Z,synthetic-poi-cafe,Synthetic Cafe
+synthetic-user-glow,synthetic-session-test-glow,2026-01-16T18:00:00Z,synthetic-poi-library,Synthetic Library
+synthetic-user-glow,synthetic-session-test-glow,2026-01-16T19:00:00Z,synthetic-poi-cafe,Synthetic Cafe
+synthetic-user-glow,synthetic-session-test-glow,2026-01-16T20:00:00Z,synthetic-poi-market,Synthetic Market

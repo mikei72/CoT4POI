@@ -1,1 +1,0 @@
-"""Isolated ablation experiment workspace."""

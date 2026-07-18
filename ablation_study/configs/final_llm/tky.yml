@@ -1,8 +1,0 @@
-dataset:
-  name: tky
-  root_dir: datasets/tky
-
-policy:
-  run_end2end_ablation: false
-  reason: high_cost_placeholder
-  note: keep final-stage ablation disabled unless extra compute budget is available
